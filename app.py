@@ -36,8 +36,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ── Styles ─────────────────────────────────────────────────────────────────────
-st.markdown("""
+# ── Styles — using st.html() so CSS actually renders on Streamlit Cloud ──────
+st.html("""
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -100,13 +100,6 @@ section[data-testid="stSidebar"] {
     border: 1px solid var(--border) !important;
     color: var(--text) !important;
     border-radius: var(--radius) !important;
-}
-[data-testid="stSidebar"] .stTextInput label {
-    color: var(--text-secondary) !important;
-    font-size: 0.7rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.08em !important;
-    font-weight: 600 !important;
 }
 
 /* ── Inputs ───────────────────────────────────────────────────────────────── */
@@ -241,356 +234,49 @@ div[data-testid="stExpander"] summary {
     font-weight: 600 !important;
     font-size: 0.88rem !important;
 }
-
-/* ── Custom Components ────────────────────────────────────────────────────── */
-.lc-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.8rem 0;
-    margin-bottom: 1.2rem;
-    border-bottom: 1px solid var(--border);
-}
-.lc-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-}
-.lc-logo-mark {
-    width: 36px;
-    height: 36px;
-    background: var(--accent);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    color: white;
-    font-weight: 700;
-}
-.lc-logo-text {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -0.02em;
-}
-.lc-logo-text span {
-    color: var(--text-muted);
-    font-weight: 400;
-    margin-left: 0.35rem;
-    font-size: 0.82rem;
-}
-.lc-status {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--text-muted);
-    font-size: 0.78rem;
-    font-weight: 500;
-}
-.lc-status-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--green);
-    box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
-}
-
-.lc-notice {
-    border-radius: var(--radius-lg);
-    padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
-    font-size: 0.84rem;
-    line-height: 1.5;
-    display: flex;
-    gap: 0.6rem;
-    align-items: flex-start;
-}
-.lc-notice.warn {
-    background: var(--yellow-subtle);
-    border: 1px solid var(--yellow-border);
-    color: #fde68a;
-}
-.lc-notice.info {
-    background: var(--accent-subtle);
-    border: 1px solid var(--accent-border);
-    color: #bfdbfe;
-}
-
-.lc-section-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin: 0 0 0.8rem 0;
-}
-
-.lc-card {
-    background: var(--surface-0);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1rem;
-    box-shadow: var(--shadow);
-}
-
-.score-wrap {
-    background: var(--surface-0);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.1rem 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 1rem;
-    box-shadow: var(--shadow);
-}
-.score-num {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1;
-    font-family: var(--font);
-}
-.score-label {
-    font-size: 0.68rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 600;
-    margin-top: 2px;
-}
-.score-verdict {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 2px;
-}
-.score-reason {
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-    line-height: 1.45;
-}
-.conf-bar-bg {
-    background: var(--surface-2);
-    border-radius: 999px;
-    height: 6px;
-    margin-top: 10px;
-    overflow: hidden;
-}
-.conf-bar-fill {
-    height: 100%;
-    border-radius: 999px;
-    transition: width 0.4s ease;
-}
-
-.kpi-chip {
-    display: inline-block;
-    background: var(--accent-subtle);
-    border: 1px solid var(--accent-border);
-    color: var(--accent-hover);
-    border-radius: 6px;
-    padding: 3px 8px;
-    font-size: 0.72rem;
-    margin: 2px 4px 2px 0;
-    font-family: var(--mono);
-    font-weight: 500;
-}
-
-.data-item {
-    padding: 0.65rem 0;
-    border-bottom: 1px solid var(--border-subtle);
-    font-size: 0.86rem;
-}
-.data-item:last-child { border-bottom: none; }
-.di-title {
-    font-weight: 600;
-    color: var(--text);
-}
-.di-sub {
-    color: var(--text-secondary);
-    font-size: 0.78rem;
-    margin-top: 2px;
-    line-height: 1.5;
-}
-.di-url {
-    color: var(--accent);
-    font-size: 0.72rem;
-    font-family: var(--mono);
-    margin-top: 3px;
-    word-break: break-all;
-}
-
-.empty-state {
-    color: var(--text-muted);
-    font-size: 0.82rem;
-    font-style: italic;
-    padding: 0.5rem 0;
-}
-
-.flag-box {
-    border-radius: var(--radius);
-    padding: 0.75rem 0.9rem;
-    margin-bottom: 0.5rem;
-    border: 1px solid;
-}
-.flag-high {
-    background: var(--red-subtle);
-    border-color: var(--red-border);
-}
-.flag-medium {
-    background: var(--yellow-subtle);
-    border-color: var(--yellow-border);
-}
-.flag-low {
-    background: var(--green-subtle);
-    border-color: var(--green-border);
-}
-.flag-head {
-    font-size: 0.74rem;
-    letter-spacing: 0.06em;
-    font-weight: 700;
-    margin-bottom: 3px;
-    text-transform: uppercase;
-}
-.flag-high .flag-head { color: #fca5a5; }
-.flag-medium .flag-head { color: #fcd34d; }
-.flag-low .flag-head { color: #6ee7b7; }
-
-.source-link {
-    display: block;
-    text-decoration: none;
-    border: 1px solid var(--border-subtle);
-    background: transparent;
-    border-radius: var(--radius);
-    padding: 0.65rem 0.8rem;
-    margin-bottom: 0.45rem;
-    transition: 0.15s ease;
-}
-.source-link:hover {
-    border-color: var(--accent-border);
-    background: var(--accent-subtle);
-}
-.source-title {
-    color: var(--text);
-    font-size: 0.84rem;
-    font-weight: 600;
-}
-.source-url {
-    color: var(--text-muted);
-    font-size: 0.72rem;
-    margin-top: 2px;
-    word-break: break-all;
-    font-family: var(--mono);
-}
-.source-tag {
-    display: inline-block;
-    margin-top: 6px;
-    background: var(--accent-subtle);
-    color: var(--accent-hover);
-    border: 1px solid var(--accent-border);
-    border-radius: 5px;
-    padding: 2px 7px;
-    font-size: 0.68rem;
-    font-weight: 500;
-}
-
-.report-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -0.02em;
-}
-.report-meta {
-    text-align: right;
-    color: var(--text-muted);
-    font-size: 0.76rem;
-    padding-top: 10px;
-}
-
-.subtle-divider {
-    height: 1px;
-    width: 100%;
-    background: var(--border);
-    margin: 1rem 0;
-}
-
-/* ── Survey card ──────────────────────────────────────────────────────────── */
-.survey-card {
-    background: var(--green-subtle);
-    border: 1px solid var(--green-border);
-    border-radius: var(--radius-lg);
-    padding: 1rem 1.2rem;
-    margin-bottom: 1rem;
-}
-.survey-card-title {
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--green);
-    margin-bottom: 0.6rem;
-}
-.survey-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 0.4rem 0;
-    border-bottom: 1px solid rgba(16,185,129,0.1);
-}
-.survey-label {
-    color: #6ee7b7;
-    font-size: 0.74rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    min-width: 200px;
-}
-.survey-value {
-    color: var(--text);
-    font-size: 0.85rem;
-    text-align: right;
-}
 </style>
-""", unsafe_allow_html=True)
+""")
 
 
 # ── Header ────────────────────────────────────────────────────────────────────
-# Try to load a custom logo, fallback to text-only header
 _logo_path = Path(__file__).parent / "KYC_logo_official.png"
 if _logo_path.exists():
     _logo_b64 = base64.b64encode(_logo_path.read_bytes()).decode()
     logo_html = f'<img src="data:image/png;base64,{_logo_b64}" style="height:40px;width:auto;" alt="Logo" />'
 else:
-    logo_html = """
-    <div class="lc-logo">
-        <div class="lc-logo-mark">LC</div>
-        <div class="lc-logo-text">LeaseCheck <span>Due Diligence</span></div>
-    </div>
-    """
+    logo_html = (
+        '<div style="display:flex;align-items:center;gap:0.7rem">'
+        '<div style="width:36px;height:36px;background:#3b82f6;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:white;font-weight:700">LC</div>'
+        '<div style="font-size:1.05rem;font-weight:700;color:#eaf0fa;letter-spacing:-0.02em">LeaseCheck <span style="color:#5b6f8d;font-weight:400;margin-left:0.35rem;font-size:0.82rem">Due Diligence</span></div>'
+        '</div>'
+    )
 
-st.markdown(f"""
-<div class="lc-header">
-    {logo_html}
-    <div class="lc-status">
-        <div class="lc-status-dot"></div>
-        Online
-    </div>
-</div>
-""", unsafe_allow_html=True)
+st.markdown(
+    f'<div style="display:flex;align-items:center;justify-content:space-between;padding:0.8rem 0;margin-bottom:1.2rem;border-bottom:1px solid #1e2d44">'
+    f'{logo_html}'
+    f'<div style="display:flex;align-items:center;gap:6px;color:#5b6f8d;font-size:0.78rem;font-weight:500">'
+    f'<div style="width:7px;height:7px;border-radius:50%;background:#10b981;box-shadow:0 0 6px rgba(16,185,129,0.4)"></div>'
+    f'Online</div></div>',
+    unsafe_allow_html=True
+)
 
 # ── Notices ───────────────────────────────────────────────────────────────────
-st.markdown("""
-<div class="lc-notice warn">
-    <span>⚠️</span>
-    <div><strong>AVG / GDPR:</strong> Deze tool verzamelt uitsluitend openbaar beschikbare informatie voor legitieme compliance-doeleinden bij leaseaanvragen. Alle resultaten vereisen beoordeling door een analist. Gebruik niet zonder geldige juridische grondslag.</div>
-</div>
-""", unsafe_allow_html=True)
+st.markdown(
+    '<div style="border-radius:14px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.84rem;line-height:1.5;'
+    'display:flex;gap:0.6rem;align-items:flex-start;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.18);color:#fde68a">'
+    '<span>⚠️</span>'
+    '<div><strong>AVG / GDPR:</strong> Deze tool verzamelt uitsluitend openbaar beschikbare informatie voor legitieme compliance-doeleinden bij leaseaanvragen. '
+    'Alle resultaten vereisen beoordeling door een analist. Gebruik niet zonder geldige juridische grondslag.</div>'
+    '</div>',
+    unsafe_allow_html=True
+)
 
 # ── Tabs ──────────────────────────────────────────────────────────────────────
 tab_person, tab_company = st.tabs(["Persoon Check", "Bedrijf Check"])
 
 # ── Person tab ────────────────────────────────────────────────────────────────
 with tab_person:
-    st.markdown('<div class="lc-section-label">Gegevens aanvrager</div>', unsafe_allow_html=True)
+    st.markdown('<div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#5b6f8d;margin:0 0 0.8rem 0">Gegevens aanvrager</div>', unsafe_allow_html=True)
     c1, c2 = st.columns(2)
     with c1:
         full_name = st.text_input("Volledige naam *", placeholder="Jan de Vries")
@@ -609,7 +295,7 @@ with tab_person:
 
 # ── Company tab ───────────────────────────────────────────────────────────────
 with tab_company:
-    st.markdown('<div class="lc-section-label">Bedrijfsgegevens</div>', unsafe_allow_html=True)
+    st.markdown('<div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#5b6f8d;margin:0 0 0.8rem 0">Bedrijfsgegevens</div>', unsafe_allow_html=True)
     cc1, cc2 = st.columns(2)
     with cc1:
         company_name = st.text_input("Bedrijfsnaam *", placeholder="Pon Holdings B.V.")
@@ -626,19 +312,19 @@ with tab_company:
 # ── Helpers ───────────────────────────────────────────────────────────────────
 def render_sources(sources):
     if not sources:
-        return '<div class="empty-state">Geen bronnen gevonden.</div>'
+        return '<div style="color:#5b6f8d;font-size:0.82rem;font-style:italic;padding:0.5rem 0">Geen bronnen gevonden.</div>'
     rows = ""
     for s in sources:
         url = clean_url(s.get("url", "#"))
         name = clean_field(s.get("name", url))
         stype = clean_field(s.get("type", "web"))
         rows += (
-            f'<div style="display:flex;align-items:center;gap:0.8rem;padding:0.55rem 0;border-bottom:1px solid var(--border-subtle)">'
+            f'<div style="display:flex;align-items:center;gap:0.8rem;padding:0.55rem 0;border-bottom:1px solid #162031">'
             f'<div style="flex:1;min-width:0">'
-            f'<a href="{url}" target="_blank" style="color:var(--accent);font-weight:600;font-size:0.84rem;text-decoration:none;display:block;margin-bottom:2px">{name}</a>'
-            f'<span style="color:var(--text-muted);font-size:0.7rem;word-break:break-all;font-family:var(--mono)">{url}</span>'
+            f'<a href="{url}" target="_blank" style="color:#3b82f6;font-weight:600;font-size:0.84rem;text-decoration:none;display:block;margin-bottom:2px">{name}</a>'
+            f'<span style="color:#5b6f8d;font-size:0.7rem;word-break:break-all">{url}</span>'
             f'</div>'
-            f'<span class="source-tag">{stype}</span>'
+            f'<span style="display:inline-block;background:rgba(59,130,246,0.08);color:#60a5fa;border:1px solid rgba(59,130,246,0.18);border-radius:5px;padding:2px 7px;font-size:0.68rem;font-weight:500">{stype}</span>'
             f'</div>'
         )
     return f'<div>{rows}</div>'
@@ -646,7 +332,7 @@ def render_sources(sources):
 
 def render_data_items(items, title_key, sub_keys=None, url_key=None):
     if not items:
-        return '<div class="empty-state">Onvoldoende gegevens</div>'
+        return '<div style="color:#5b6f8d;font-size:0.82rem;font-style:italic;padding:0.5rem 0">Onvoldoende gegevens</div>'
 
     sub_keys = sub_keys or []
     html = ""
@@ -655,35 +341,34 @@ def render_data_items(items, title_key, sub_keys=None, url_key=None):
         subs = " · ".join(clean_field(item.get(k, "")) for k in sub_keys if item.get(k))
         url = item.get(url_key, "") if url_key else ""
 
-        html += '<div class="data-item">'
-        html += f'<div class="di-title">{title}</div>'
+        html += f'<div style="padding:0.65rem 0;border-bottom:1px solid #162031;font-size:0.86rem">'
+        html += f'<div style="font-weight:600;color:#eaf0fa">{title}</div>'
         if subs:
-            html += f'<div class="di-sub">{subs}</div>'
+            html += f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px;line-height:1.5">{subs}</div>'
         if url:
-            html += f'<div class="di-url">{clean_field(url)}</div>'
+            html += f'<div style="color:#3b82f6;font-size:0.72rem;margin-top:3px;word-break:break-all">{clean_field(url)}</div>'
         html += '</div>'
     return html
 
 def verdict_color(score: int) -> str:
     if score >= 80:
-        return "var(--green)"
+        return "#10b981"
     if score >= 55:
-        return "var(--yellow)"
-    return "var(--red)"
+        return "#f59e0b"
+    return "#ef4444"
 
 
 def display_results(result, full_name, city_region, analyst_name):
-    # ── Title row ─────────────────────────────────────────────────────────────
     t1, t2 = st.columns([3, 2])
     with t1:
-        st.markdown(f'<div class="report-title">{full_name} <span style="color:var(--text-muted)">·</span> {city_region}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="font-size:1.8rem;font-weight:700;color:#eaf0fa;letter-spacing:-0.02em">{full_name} <span style="color:#5b6f8d">·</span> {city_region}</div>', unsafe_allow_html=True)
     with t2:
         st.markdown(
-            f'<div class="report-meta">{datetime.now().strftime("%d %b %Y %H:%M")} · Analist: {analyst_name or "—"}</div>',
+            f'<div style="text-align:right;color:#5b6f8d;font-size:0.76rem;padding-top:10px">{datetime.now().strftime("%d %b %Y %H:%M")} · Analist: {analyst_name or "—"}</div>',
             unsafe_allow_html=True
         )
 
-    st.markdown('<div class="subtle-divider"></div>', unsafe_allow_html=True)
+    st.markdown('<div style="height:1px;width:100%;background:#1e2d44;margin:1rem 0"></div>', unsafe_allow_html=True)
 
     # ── Confidence ────────────────────────────────────────────────────────────
     score = int(result.get("confidence_score", 0))
@@ -692,16 +377,16 @@ def display_results(result, full_name, city_region, analyst_name):
     color = verdict_color(score)
 
     st.markdown(f"""
-    <div class="score-wrap">
+    <div style="background:#0f1520;border:1px solid #1e2d44;border-radius:14px;padding:1.1rem 1.2rem;display:flex;align-items:center;gap:1.2rem;margin-bottom:1rem;box-shadow:0 1px 3px rgba(0,0,0,0.3),0 4px 12px rgba(0,0,0,0.15)">
         <div>
-            <div class="score-num" style="color:{color}">{score}</div>
-            <div class="score-label">/ 100 betrouwbaarheid</div>
+            <div style="font-size:3rem;font-weight:700;line-height:1;color:{color}">{score}</div>
+            <div style="font-size:0.68rem;color:#5b6f8d;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;margin-top:2px">/ 100 betrouwbaarheid</div>
         </div>
         <div style="flex:1">
-            <div class="score-verdict" style="color:{color}">{verdict}</div>
-            <div class="score-reason">{reasoning}</div>
-            <div class="conf-bar-bg">
-                <div class="conf-bar-fill" style="width:{score}%;background:{color}"></div>
+            <div style="font-size:1rem;font-weight:700;margin-bottom:2px;color:{color}">{verdict}</div>
+            <div style="font-size:0.82rem;color:#8899b4;line-height:1.45">{reasoning}</div>
+            <div style="background:#1a2436;border-radius:999px;height:6px;margin-top:10px;overflow:hidden">
+                <div style="height:100%;border-radius:999px;width:{score}%;background:{color};transition:width 0.4s ease"></div>
             </div>
         </div>
     </div>
@@ -710,30 +395,36 @@ def display_results(result, full_name, city_region, analyst_name):
     # ── Variations ────────────────────────────────────────────────────────────
     variations = result.get("name_variations_searched", [])
     if variations:
-        chips = "".join([f'<span class="kpi-chip">{v}</span>' for v in variations])
+        chips = "".join([f'<span style="display:inline-block;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.18);color:#60a5fa;border-radius:6px;padding:3px 8px;font-size:0.72rem;margin:2px 4px 2px 0;font-weight:500">{v}</span>' for v in variations])
         st.markdown(
-            f"<div style='margin-bottom:1rem'><div class='lc-section-label'>Gezochte variaties</div>{chips}</div>",
+            f'<div style="margin-bottom:1rem"><div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#5b6f8d;margin-bottom:0.4rem">Gezochte variaties</div>{chips}</div>',
             unsafe_allow_html=True
         )
 
     # ── Risk flags ────────────────────────────────────────────────────────────
     flags = result.get("risk_flags", [])
     if not flags:
-        flags_html = '<div style="color:var(--green);font-weight:600;font-size:0.88rem;padding:0.2rem 0">✓ Geen risicovlaggen geïdentificeerd.</div>'
+        flags_html = '<div style="color:#10b981;font-weight:600;font-size:0.88rem;padding:0.2rem 0">✓ Geen risicovlaggen geïdentificeerd.</div>'
     else:
         flags_html = ""
         for f in flags:
             sev = (f.get("severity") or "low").lower()
-            box_class = "flag-high" if sev == "high" else "flag-medium" if sev == "medium" else "flag-low"
+            if sev == "high":
+                bg, bc, hc = "rgba(239,68,68,0.08)", "rgba(239,68,68,0.18)", "#fca5a5"
+            elif sev == "medium":
+                bg, bc, hc = "rgba(245,158,11,0.08)", "rgba(245,158,11,0.18)", "#fcd34d"
+            else:
+                bg, bc, hc = "rgba(16,185,129,0.08)", "rgba(16,185,129,0.18)", "#6ee7b7"
             icon = "⛔" if sev == "high" else "⚠️" if sev == "medium" else "ℹ️"
             flags_html += (
-                f'<div class="flag-box {box_class}">'
-                f'<div class="flag-head">{icon} [{sev.upper()}] {clean_field(f.get("category", ""))}</div>'
-                f'<div class="di-sub" style="font-size:0.82rem;color:var(--text)">{clean_field(f.get("description", ""))}</div>'
+                f'<div style="border-radius:10px;padding:0.75rem 0.9rem;margin-bottom:0.5rem;border:1px solid {bc};background:{bg}">'
+                f'<div style="font-size:0.74rem;letter-spacing:0.06em;font-weight:700;margin-bottom:3px;text-transform:uppercase;color:{hc}">{icon} [{sev.upper()}] {clean_field(f.get("category", ""))}</div>'
+                f'<div style="font-size:0.82rem;color:#eaf0fa;line-height:1.5">{clean_field(f.get("description", ""))}</div>'
                 f'</div>'
             )
     st.markdown(
-        f'<div class="lc-card"><div class="lc-section-label">Risicovlaggen</div>{flags_html}</div>',
+        f'<div style="background:#0f1520;border:1px solid #1e2d44;border-radius:14px;padding:1rem;box-shadow:0 1px 3px rgba(0,0,0,0.3),0 4px 12px rgba(0,0,0,0.15)">'
+        f'<div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#5b6f8d;margin:0 0 0.8rem 0">Risicovlaggen</div>{flags_html}</div>',
         unsafe_allow_html=True
     )
 
@@ -742,22 +433,11 @@ def display_results(result, full_name, city_region, analyst_name):
 
     with col_l:
         with st.expander("Identiteit", icon=":material/fingerprint:"):
-            st.markdown(
-                render_data_items(result.get("identity_matches", []), "name", ["description", "confidence"]),
-                unsafe_allow_html=True
-            )
-
+            st.markdown(render_data_items(result.get("identity_matches", []), "name", ["description", "confidence"]), unsafe_allow_html=True)
         with st.expander("Professionele Profielen", icon=":material/work:"):
-            st.markdown(
-                render_data_items(result.get("professional_profiles", []), "role", ["company", "platform"], "url_hint"),
-                unsafe_allow_html=True
-            )
-
+            st.markdown(render_data_items(result.get("professional_profiles", []), "role", ["company", "platform"], "url_hint"), unsafe_allow_html=True)
         with st.expander("Bedrijfsregistraties", icon=":material/business_center:"):
-            st.markdown(
-                render_data_items(result.get("business_records", []), "entity", ["role", "status"], "source"),
-                unsafe_allow_html=True
-            )
+            st.markdown(render_data_items(result.get("business_records", []), "entity", ["role", "status"], "source"), unsafe_allow_html=True)
 
     with col_r:
         with st.expander("Media Vermeldingen", icon=":material/newspaper:"):
@@ -768,34 +448,24 @@ def display_results(result, full_name, city_region, analyst_name):
                     sentiment = (m.get("sentiment") or "").lower()
                     icon = {"positive": "🟢", "neutral": "⚪", "negative": "🔴"}.get(sentiment, "⚪")
                     html += (
-                        f'<div class="data-item">'
-                        f'<div class="di-title">{icon} {clean_field(m.get("title", "—"))}</div>'
-                        f'<div class="di-sub">{clean_field(m.get("source", ""))} · {clean_field(m.get("date", ""))} · {clean_field(m.get("sentiment", ""))}</div>'
-                        f'<div class="di-sub">{clean_field(m.get("summary", ""))}</div>'
+                        f'<div style="padding:0.65rem 0;border-bottom:1px solid #162031;font-size:0.86rem">'
+                        f'<div style="font-weight:600;color:#eaf0fa">{icon} {clean_field(m.get("title", "—"))}</div>'
+                        f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px">{clean_field(m.get("source", ""))} · {clean_field(m.get("date", ""))} · {clean_field(m.get("sentiment", ""))}</div>'
+                        f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px;line-height:1.5">{clean_field(m.get("summary", ""))}</div>'
                         f'</div>'
                     )
                 st.markdown(html, unsafe_allow_html=True)
             else:
-                st.markdown('<div class="empty-state">Onvoldoende gegevens</div>', unsafe_allow_html=True)
-
+                st.markdown('<div style="color:#5b6f8d;font-size:0.82rem;font-style:italic">Onvoldoende gegevens</div>', unsafe_allow_html=True)
         with st.expander("Social Media", icon=":material/public:"):
-            st.markdown(
-                render_data_items(result.get("social_media_presence", []), "platform", ["description"]),
-                unsafe_allow_html=True
-            )
-
+            st.markdown(render_data_items(result.get("social_media_presence", []), "platform", ["description"]), unsafe_allow_html=True)
         with st.expander("Juridische Registraties", icon=":material/gavel:"):
-            st.markdown(
-                render_data_items(result.get("legal_public_records", []), "issue_type", ["date", "summary"], "source"),
-                unsafe_allow_html=True
-            )
+            st.markdown(render_data_items(result.get("legal_public_records", []), "issue_type", ["date", "summary"], "source"), unsafe_allow_html=True)
 
-    # ── Sources ───────────────────────────────────────────────────────────────
     st.markdown('<div style="height:1rem"></div>', unsafe_allow_html=True)
     with st.expander("Bronnen", icon=":material/link:"):
         st.markdown(render_sources(result.get("sources", [])), unsafe_allow_html=True)
 
-    # ── Export ────────────────────────────────────────────────────────────────
     st.divider()
     try:
         pdf_bytes = generate_pdf(result, full_name, city_region, analyst_name)
@@ -816,21 +486,21 @@ def display_company_results(result, company_name, country, analyst_name):
 
     t1, t2 = st.columns([3, 2])
     with t1:
-        st.markdown(f'<div class="report-title">{clean_field(profile.get("name", company_name))}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div style="font-size:1.8rem;font-weight:700;color:#eaf0fa;letter-spacing:-0.02em">{clean_field(profile.get("name", company_name))}</div>', unsafe_allow_html=True)
         sector = clean_field(profile.get("sector"))
         legal = clean_field(profile.get("legal_form"))
         if sector or legal:
             subtitle = " · ".join(v for v in [sector, legal] if v)
-            st.markdown(f'<div style="color:var(--text-secondary);font-size:0.9rem;margin-top:2px">{subtitle}</div>', unsafe_allow_html=True)
+            st.markdown(f'<div style="color:#8899b4;font-size:0.9rem;margin-top:2px">{subtitle}</div>', unsafe_allow_html=True)
     with t2:
         st.markdown(
-            f'<div class="report-meta">{datetime.now().strftime("%d %b %Y %H:%M")} · Analist: {analyst_name or "—"}</div>',
+            f'<div style="text-align:right;color:#5b6f8d;font-size:0.76rem;padding-top:10px">{datetime.now().strftime("%d %b %Y %H:%M")} · Analist: {analyst_name or "—"}</div>',
             unsafe_allow_html=True
         )
 
-    st.markdown('<div class="subtle-divider"></div>', unsafe_allow_html=True)
+    st.markdown('<div style="height:1px;width:100%;background:#1e2d44;margin:1rem 0"></div>', unsafe_allow_html=True)
 
-    # ── Survey-ready card ─────────────────────────────────────────────────────
+    # ── Survey card ───────────────────────────────────────────────────────────
     directors = result.get("directors_shareholders", [])
     manager = clean_field(directors[0].get("name")) if directors else "—"
     survey_fields = [
@@ -842,15 +512,15 @@ def display_company_results(result, company_name, country, analyst_name):
         ("Geschat aantal medewerkers", clean_field(profile.get("size")) or "—"),
     ]
     survey_html = "".join(
-        f'<div class="survey-row">'
-        f'<span class="survey-label">{label}</span>'
-        f'<span class="survey-value">{value}</span>'
+        f'<div style="display:flex;justify-content:space-between;align-items:baseline;padding:0.4rem 0;border-bottom:1px solid rgba(16,185,129,0.1)">'
+        f'<span style="color:#6ee7b7;font-size:0.74rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;min-width:200px">{label}</span>'
+        f'<span style="color:#eaf0fa;font-size:0.85rem;text-align:right">{value}</span>'
         f'</div>'
         for label, value in survey_fields
     )
     st.markdown(
-        f'<div class="survey-card">'
-        f'<div class="survey-card-title">Bedrijfsonderzoek · Lease Due Diligence</div>'
+        f'<div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.18);border-radius:14px;padding:1rem 1.2rem;margin-bottom:1rem">'
+        f'<div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#10b981;margin-bottom:0.6rem">Bedrijfsonderzoek · Lease Due Diligence</div>'
         f'{survey_html}</div>',
         unsafe_allow_html=True
     )
@@ -858,21 +528,27 @@ def display_company_results(result, company_name, country, analyst_name):
     # ── Risk flags ────────────────────────────────────────────────────────────
     flags = result.get("risk_flags", [])
     if not flags:
-        flags_html = '<div style="color:var(--green);font-weight:600;font-size:0.88rem;padding:0.2rem 0">✓ Geen risicovlaggen geïdentificeerd.</div>'
+        flags_html = '<div style="color:#10b981;font-weight:600;font-size:0.88rem;padding:0.2rem 0">✓ Geen risicovlaggen geïdentificeerd.</div>'
     else:
         flags_html = ""
         for f in flags:
             sev = (f.get("severity") or "low").lower()
-            box_class = "flag-high" if sev == "high" else "flag-medium" if sev == "medium" else "flag-low"
+            if sev == "high":
+                bg, bc, hc = "rgba(239,68,68,0.08)", "rgba(239,68,68,0.18)", "#fca5a5"
+            elif sev == "medium":
+                bg, bc, hc = "rgba(245,158,11,0.08)", "rgba(245,158,11,0.18)", "#fcd34d"
+            else:
+                bg, bc, hc = "rgba(16,185,129,0.08)", "rgba(16,185,129,0.18)", "#6ee7b7"
             icon = "⛔" if sev == "high" else "⚠️" if sev == "medium" else "ℹ️"
             flags_html += (
-                f'<div class="flag-box {box_class}">'
-                f'<div class="flag-head">{icon} [{sev.upper()}] {clean_field(f.get("category", ""))}</div>'
-                f'<div class="di-sub" style="font-size:0.82rem;color:var(--text)">{clean_field(f.get("description", ""))}</div>'
+                f'<div style="border-radius:10px;padding:0.75rem 0.9rem;margin-bottom:0.5rem;border:1px solid {bc};background:{bg}">'
+                f'<div style="font-size:0.74rem;letter-spacing:0.06em;font-weight:700;margin-bottom:3px;text-transform:uppercase;color:{hc}">{icon} [{sev.upper()}] {clean_field(f.get("category", ""))}</div>'
+                f'<div style="font-size:0.82rem;color:#eaf0fa;line-height:1.5">{clean_field(f.get("description", ""))}</div>'
                 f'</div>'
             )
     st.markdown(
-        f'<div class="lc-card"><div class="lc-section-label">Risicovlaggen</div>{flags_html}</div>',
+        f'<div style="background:#0f1520;border:1px solid #1e2d44;border-radius:14px;padding:1rem;box-shadow:0 1px 3px rgba(0,0,0,0.3),0 4px 12px rgba(0,0,0,0.15)">'
+        f'<div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#5b6f8d;margin:0 0 0.8rem 0">Risicovlaggen</div>{flags_html}</div>',
         unsafe_allow_html=True
     )
     st.markdown('<div style="height:0.5rem"></div>', unsafe_allow_html=True)
@@ -895,15 +571,15 @@ def display_company_results(result, company_name, country, analyst_name):
                 value = clean_field(value)
                 if value:
                     html += (
-                        f'<div class="data-item">'
-                        f'<span style="color:var(--text-muted);font-size:0.76rem">{label}</span>'
-                        f'<div class="di-title" style="font-size:0.86rem">{value}</div>'
+                        f'<div style="padding:0.65rem 0;border-bottom:1px solid #162031;font-size:0.86rem">'
+                        f'<span style="color:#5b6f8d;font-size:0.76rem">{label}</span>'
+                        f'<div style="font-weight:600;color:#eaf0fa;font-size:0.86rem">{value}</div>'
                         f'</div>'
                     )
             desc = clean_field(profile.get("description"))
             if desc:
-                html += f'<div style="color:var(--text-secondary);font-size:0.86rem;padding:0.5rem 0">{desc}</div>'
-            st.markdown(html or '<div class="empty-state">Geen profielgegevens</div>', unsafe_allow_html=True)
+                html += f'<div style="color:#8899b4;font-size:0.86rem;padding:0.5rem 0">{desc}</div>'
+            st.markdown(html or '<div style="color:#5b6f8d;font-size:0.82rem;font-style:italic">Geen profielgegevens</div>', unsafe_allow_html=True)
 
         with st.expander("Bestuurders & Aandeelhouders", icon=":material/group:"):
             items = result.get("directors_shareholders", [])
@@ -911,13 +587,14 @@ def display_company_results(result, company_name, country, analyst_name):
                 html = ""
                 for p in items:
                     html += (
-                        f'<div class="data-item"><div class="di-title">{clean_field(p.get("name","—"))}</div>'
-                        f'<div class="di-sub">{clean_field(p.get("role",""))} · Sinds {clean_field(p.get("since","—"))}</div>'
-                        f'<div class="di-sub">{clean_field(p.get("notes",""))}</div></div>'
+                        f'<div style="padding:0.65rem 0;border-bottom:1px solid #162031;font-size:0.86rem">'
+                        f'<div style="font-weight:600;color:#eaf0fa">{clean_field(p.get("name","—"))}</div>'
+                        f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px">{clean_field(p.get("role",""))} · Sinds {clean_field(p.get("since","—"))}</div>'
+                        f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px">{clean_field(p.get("notes",""))}</div></div>'
                     )
                 st.markdown(html, unsafe_allow_html=True)
             else:
-                st.markdown('<div class="empty-state">Geen gegevens gevonden</div>', unsafe_allow_html=True)
+                st.markdown('<div style="color:#5b6f8d;font-size:0.82rem;font-style:italic">Geen gegevens gevonden</div>', unsafe_allow_html=True)
 
         with st.expander("Financiën", icon=":material/bar_chart:"):
             items = result.get("financials", [])
@@ -925,13 +602,14 @@ def display_company_results(result, company_name, country, analyst_name):
                 html = ""
                 for f in items:
                     html += (
-                        f'<div class="data-item"><div class="di-title">{clean_field(f.get("year","—"))}</div>'
-                        f'<div class="di-sub">Omzet: {clean_field(f.get("revenue","—"))} · Winst: {clean_field(f.get("profit","—"))} · Medewerkers: {clean_field(f.get("employees","—"))}</div>'
-                        f'<div class="di-url">{clean_field(f.get("source",""))}</div></div>'
+                        f'<div style="padding:0.65rem 0;border-bottom:1px solid #162031;font-size:0.86rem">'
+                        f'<div style="font-weight:600;color:#eaf0fa">{clean_field(f.get("year","—"))}</div>'
+                        f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px">Omzet: {clean_field(f.get("revenue","—"))} · Winst: {clean_field(f.get("profit","—"))} · Medewerkers: {clean_field(f.get("employees","—"))}</div>'
+                        f'<div style="color:#3b82f6;font-size:0.72rem;margin-top:3px">{clean_field(f.get("source",""))}</div></div>'
                     )
                 st.markdown(html, unsafe_allow_html=True)
             else:
-                st.markdown('<div class="empty-state">Geen financiële gegevens gevonden</div>', unsafe_allow_html=True)
+                st.markdown('<div style="color:#5b6f8d;font-size:0.82rem;font-style:italic">Geen financiële gegevens gevonden</div>', unsafe_allow_html=True)
 
     with col_r:
         with st.expander("Groepsstructuur", icon=":material/account_tree:"):
@@ -940,13 +618,14 @@ def display_company_results(result, company_name, country, analyst_name):
                 html = ""
                 for g in items:
                     html += (
-                        f'<div class="data-item"><div class="di-title">{clean_field(g.get("entity","—"))}</div>'
-                        f'<div class="di-sub">{clean_field(g.get("relationship",""))} · {clean_field(g.get("country",""))}</div>'
-                        f'<div class="di-sub">{clean_field(g.get("notes",""))}</div></div>'
+                        f'<div style="padding:0.65rem 0;border-bottom:1px solid #162031;font-size:0.86rem">'
+                        f'<div style="font-weight:600;color:#eaf0fa">{clean_field(g.get("entity","—"))}</div>'
+                        f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px">{clean_field(g.get("relationship",""))} · {clean_field(g.get("country",""))}</div>'
+                        f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px">{clean_field(g.get("notes",""))}</div></div>'
                     )
                 st.markdown(html, unsafe_allow_html=True)
             else:
-                st.markdown('<div class="empty-state">Geen groepsstructuur gevonden</div>', unsafe_allow_html=True)
+                st.markdown('<div style="color:#5b6f8d;font-size:0.82rem;font-style:italic">Geen groepsstructuur gevonden</div>', unsafe_allow_html=True)
 
         with st.expander("Sleutelpersonen", icon=":material/badge:"):
             items = result.get("key_people", [])
@@ -954,13 +633,14 @@ def display_company_results(result, company_name, country, analyst_name):
                 html = ""
                 for k in items:
                     html += (
-                        f'<div class="data-item"><div class="di-title">{clean_field(k.get("name","—"))}</div>'
-                        f'<div class="di-sub">{clean_field(k.get("role",""))}</div>'
-                        f'<div class="di-sub">{clean_field(k.get("description",""))}</div></div>'
+                        f'<div style="padding:0.65rem 0;border-bottom:1px solid #162031;font-size:0.86rem">'
+                        f'<div style="font-weight:600;color:#eaf0fa">{clean_field(k.get("name","—"))}</div>'
+                        f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px">{clean_field(k.get("role",""))}</div>'
+                        f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px">{clean_field(k.get("description",""))}</div></div>'
                     )
                 st.markdown(html, unsafe_allow_html=True)
             else:
-                st.markdown('<div class="empty-state">Geen sleutelpersonen gevonden</div>', unsafe_allow_html=True)
+                st.markdown('<div style="color:#5b6f8d;font-size:0.82rem;font-style:italic">Geen sleutelpersonen gevonden</div>', unsafe_allow_html=True)
 
         with st.expander("Nieuws & Media", icon=":material/newspaper:"):
             items = result.get("news_media", [])
@@ -968,14 +648,15 @@ def display_company_results(result, company_name, country, analyst_name):
                 html = ""
                 for m in items:
                     html += (
-                        f'<div class="data-item"><div class="di-title">{clean_field(m.get("title","—"))}</div>'
-                        f'<div class="di-sub">{clean_field(m.get("source",""))} · {clean_field(m.get("date",""))}</div>'
-                        f'<div class="di-sub">{clean_field(m.get("summary",""))}</div>'
-                        f'<div class="di-url">{m.get("url","")}</div></div>'
+                        f'<div style="padding:0.65rem 0;border-bottom:1px solid #162031;font-size:0.86rem">'
+                        f'<div style="font-weight:600;color:#eaf0fa">{clean_field(m.get("title","—"))}</div>'
+                        f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px">{clean_field(m.get("source",""))} · {clean_field(m.get("date",""))}</div>'
+                        f'<div style="color:#8899b4;font-size:0.78rem;margin-top:2px;line-height:1.5">{clean_field(m.get("summary",""))}</div>'
+                        f'<div style="color:#3b82f6;font-size:0.72rem;margin-top:3px;word-break:break-all">{m.get("url","")}</div></div>'
                     )
                 st.markdown(html, unsafe_allow_html=True)
             else:
-                st.markdown('<div class="empty-state">Geen nieuws gevonden</div>', unsafe_allow_html=True)
+                st.markdown('<div style="color:#5b6f8d;font-size:0.82rem;font-style:italic">Geen nieuws gevonden</div>', unsafe_allow_html=True)
 
     st.markdown('<div style="height:1rem"></div>', unsafe_allow_html=True)
     with st.expander("Bronnen", icon=":material/link:"):
@@ -1011,11 +692,9 @@ if run_btn:
             employer=employer,
             context=context
         )
-
         if error:
             status.update(label=f"Fout: {error}", state="error")
             st.stop()
-
         status.update(label="Screening afgerond.", state="complete")
 
     with open("audit_log.jsonl", "a", encoding="utf-8") as f:
@@ -1036,12 +715,14 @@ if deep_btn:
         st.error("Volledige naam en woonplaats zijn verplicht.")
         st.stop()
 
-    st.markdown("""
-    <div class="lc-notice info">
-        <span>🔍</span>
-        <div>Deep Scan voert een uitgebreide multi-source analyse uit en duurt doorgaans <strong>2–5 minuten</strong>.</div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(
+        '<div style="border-radius:14px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.84rem;line-height:1.5;'
+        'display:flex;gap:0.6rem;align-items:flex-start;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.18);color:#bfdbfe">'
+        '<span>🔍</span>'
+        '<div>Deep Scan voert een uitgebreide multi-source analyse uit en duurt doorgaans <strong>2–5 minuten</strong>.</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
 
     with st.status("Deep scan wordt uitgevoerd...", expanded=True) as status:
         st.write(f"Diepgaand onderzoek gestart voor **{full_name}** · {city_region}...")
@@ -1053,11 +734,9 @@ if deep_btn:
             employer=employer,
             context=context
         )
-
         if error:
             status.update(label=f"Fout: {error}", state="error")
             st.stop()
-
         status.update(label="Deep scan afgerond.", state="complete")
 
     with open("audit_log.jsonl", "a", encoding="utf-8") as f:
@@ -1089,11 +768,9 @@ if company_run_btn:
             sector=company_sector,
             context=company_context
         )
-
         if company_error:
             status.update(label=f"Fout: {company_error}", state="error")
             st.stop()
-
         status.update(label="Bedrijfsonderzoek afgerond.", state="complete")
 
     with open("audit_log.jsonl", "a", encoding="utf-8") as f:
